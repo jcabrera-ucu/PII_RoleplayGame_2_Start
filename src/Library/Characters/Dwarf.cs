@@ -1,27 +1,24 @@
 namespace RoleplayGame
 {
-    public class Dwarf
+    public class Dwarf : ICharacter, ICurable, IAttackable
     {
         private int health = 100;
+
+        public Bag Bag { get; }
 
         public Dwarf(string name)
         {
             this.Name = name;
+            this.Bag = new();
         }
 
         public string Name { get; set; }
-
-        public Axe Axe { get; set; }
-
-        public Shield Shield { get; set; }
-
-        public Helmet Helmet { get; set; }
 
         public int AttackValue
         {
             get
             {
-                return Axe.AttackValue;
+                return Bag.AttackValue;
             }
         }
 
@@ -29,7 +26,7 @@ namespace RoleplayGame
         {
             get
             {
-                return Shield.DefenseValue + Helmet.DefenseValue;
+                return Bag.DefenseValue;
             }
         }
 

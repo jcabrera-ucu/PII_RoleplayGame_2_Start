@@ -2,42 +2,52 @@ using System.Collections.Generic;
 
 namespace RoleplayGame
 {
-    public class SpellsBook
+    public class MagicBag
     {
-        public ISpell[] Spells { get; set; }
-        
-        public int AttackValue
+        public List<IMagicItem> Items { get; }
+
+        public MagicBag()
+        {
+            this.Items = new List<IMagicItem>();
+        }
+
+        public void AddItem(IMagicItem item)
+        {
+            Items.Add(item);
+        }
+
+        public int AttackValue 
         {
             get
             {
                 int value = 0;
-                foreach (ISpell spell in this.Spells)
+                foreach (var item in Items)
                 {
-                    var attackItem = spell as IAttackItem;
+                    var attackItem = item as IAttackItem;
                     if (attackItem != null)
                     {
                         value += attackItem.AttackValue;
                     }
                 }
                 return value;
-            }
+            } 
         }
 
-        public int DefenseValue
+        public int DefenseValue 
         {
             get
             {
                 int value = 0;
-                foreach (ISpell spell in this.Spells)
+                foreach (var item in Items)
                 {
-                    var defenseItem = spell as IDefenseItem;
+                    var defenseItem = item as IDefenseItem;
                     if (defenseItem != null)
                     {
                         value += defenseItem.DefenseValue;
                     }
                 }
                 return value;
-            }
+            } 
         }
     }
 }

@@ -1,25 +1,24 @@
 namespace RoleplayGame
 {
-    public class Archer
+    public class Archer : ICharacter, ICurable, IAttackable
     {
         private int health = 100;
 
+        public Bag Bag { get; }
+
         public Archer(string name)
         {
+            Bag = new();
             this.Name = name;
         }
 
         public string Name { get; set; }
-        
-        public Bow Bow { get; set; }
-
-        public Helmet Helmet { get; set; }
 
         public int AttackValue
         {
             get
             {
-                return Bow.AttackValue;
+                return Bag.AttackValue;
             }
         }
 
@@ -27,7 +26,7 @@ namespace RoleplayGame
         {
             get
             {
-                return Helmet.DefenseValue;
+                return Bag.DefenseValue;
             }
         }
 

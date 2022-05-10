@@ -1,25 +1,29 @@
 namespace RoleplayGame
 {
-    public class Wizard
+    public class Wizard : ICharacter, ICurable, IAttackable
     {
         private int health = 100;
 
         public Wizard(string name)
         {
             this.Name = name;
+            this.Bag = new();
+            this.MagicBag = new();
         }
 
         public string Name { get; set; }
 
-        public SpellsBook SpellsBook { get; set; }
+        public Bag Bag { get; }
 
-        public Staff Staff { get; set; }
+        public MagicBag MagicBag { get; }
+
+        public SpellsBook SpellsBook { get; set; }
 
         public int AttackValue
         {
             get
             {
-                return SpellsBook.AttackValue + Staff.AttackValue;
+                return SpellsBook.AttackValue + Bag.AttackValue + MagicBag.AttackValue;
             }
         }
 
@@ -27,7 +31,7 @@ namespace RoleplayGame
         {
             get
             {
-                return SpellsBook.DefenseValue + Staff.DefenseValue;
+                return SpellsBook.DefenseValue + Bag.DefenseValue + MagicBag.DefenseValue;
             }
         }
 
